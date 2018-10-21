@@ -8,7 +8,7 @@ route.get('/',userController.getUser);
 route.get('/getalluser',auth.verifyToken,userController.getallUser);
 route.post('/register',userController.register);
 route.post('/login',userController.loginUser);
-route.get('/getProfile',userController.getProfile);
+route.get('/getProfile',auth.verifyToken,userController.getProfile);
 
 
 module.exports=route;
