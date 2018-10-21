@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   registration() {
-    console.log(this.addForm.value);
     this.userservice.userregister(this.addForm.value).subscribe(
       res => {
         if (res.status === 200) {

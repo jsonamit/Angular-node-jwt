@@ -20,6 +20,10 @@ export class UserService {
   getallUser(): Observable<any> {
     return this.http.get(this.apiurl + '/user/getalluser');
   }
+  getuserProfile(): Observable<any> {
+    return this.http.get(this.apiurl + '/user/getProfile');
+  }
+
   isAuth(token) {
    return localStorage.setItem('token', token);
   }

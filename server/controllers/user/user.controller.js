@@ -113,3 +113,27 @@ module.exports.loginUser=(req,res)=>{
   }
 }
 
+module.exports.getProfile=(req,res)=>{
+
+        let response = {};
+
+            let user_id = req.body.userid;
+            console.log(user_id);
+            // let user_id = '5bca22f76379441491302cce';
+            User.findOne({ _id: user_id }, (err, user) => {
+                if (err) {
+                    response.status = 500;
+                    response.data = null;
+                    response.msg = 'server error';
+                    res.send(response);
+                }
+                else {
+                    response.status = 200;
+                    response.data = user;
+                    response.msg = 'user profile';
+                    res.send(response);
+                }
+
+            })
+}
+

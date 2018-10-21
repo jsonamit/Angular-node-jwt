@@ -12,15 +12,27 @@ export class DashboardComponent implements OnInit {
   constructor(private userservice: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.userservice.getallUser().subscribe(
+
+    // this.userservice.getallUser().subscribe(
+    //   res => this.users = res.data,
+    //    err => {
+    //     if ( err instanceof HttpErrorResponse) {
+    //        if (err.status === 401) {
+    //          this.router.navigate(['login']);
+    //        }
+    //     }
+    // }
+    // );
+
+    this.userservice.getuserProfile().subscribe(
       res => this.users = res.data,
-       err => {
+      err => {
         if ( err instanceof HttpErrorResponse) {
-           if (err.status === 401) {
-             this.router.navigate(['login']);
-           }
+          if (err.status === 401) {
+            this.router.navigate(['login']);
+          }
         }
-    }
+      }
     );
   }
 
