@@ -5,7 +5,7 @@ module.exports.getUser=(req,res)=>{
   res.send('this is base route');
 };
 module.exports.getallUser=(req,res)=>{
-    var response={};
+    const response={};
    User.find((err,userData)=>{
        if(err)
        {
@@ -24,7 +24,7 @@ module.exports.getallUser=(req,res)=>{
    })
 };
 module.exports.register=(req,res)=>{
-  let response={};
+  const response={};
   if(req.body.name && req.body.email && req.body.password)
   {
       User.find({email:req.body.email},(err,exitingUser)=>{
@@ -43,9 +43,9 @@ module.exports.register=(req,res)=>{
               res.send(response);
           }
 
-          // var userReg={name:req.body.name,email:req.body.email,password:req.body.password};
-            var userData=req.body;
-            var user=new User(userData);
+          // const userReg={name:req.body.name,email:req.body.email,password:req.body.password};
+            const userData=req.body;
+            const user=new User(userData);
             user.save((err,data)=>{
             if(err)
             {
@@ -54,8 +54,8 @@ module.exports.register=(req,res)=>{
               res.send(response);
             }
             else {
-                let pay={subject:data._id};
-                let token=jwt.sign(pay,'secertkey');
+                const pay={subject:data._id};
+                const token=jwt.sign(pay,'secertkey');
                 response.status=200;
                 response.msg="Resgistration successfull";
                 response.data=data;
@@ -75,7 +75,7 @@ module.exports.register=(req,res)=>{
 };
 
 module.exports.loginUser=(req,res)=>{
-  var response={};
+  const response={};
   if(req.body.email && req.body.password)
   {
         User.findOne({email:req.body.email},(err,userData)=>{
@@ -89,8 +89,8 @@ module.exports.loginUser=(req,res)=>{
           {
             if (userData)
             {
-                let pay={subject:userData._id};
-                let token=jwt.sign(pay,'secertkey');
+                const pay={subject:userData._id};
+                const token=jwt.sign(pay,'secertkey');
                 response.status=200;
                 response.msg="login successfully";
                 response.data=userData;
@@ -100,7 +100,7 @@ module.exports.loginUser=(req,res)=>{
             else
             {
                 response.status=401;
-                response.msg="Enter correct emailid and password";
+                response.msg="check Email and password";
                 res.send(response);
             }
           }
@@ -115,9 +115,9 @@ module.exports.loginUser=(req,res)=>{
 
 module.exports.getProfile=(req,res)=>{
 
-        let response = {};
+        const response = {};
 
-            let user_id = req.body.userid;
+            const user_id = req.body.userid;
             console.log(user_id);
             User.findOne({ _id: user_id }, (err, user) => {
                 if (err) {

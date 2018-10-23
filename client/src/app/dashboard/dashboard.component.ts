@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../services/user/user.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {Message} from 'primeng/components/common/api';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -9,6 +10,8 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
    users: any = [];
+  uploadedFiles: any[] = [];
+  msgs: Message[] = [];
   constructor(private userservice: UserService, private router: Router) { }
 
   ngOnInit() {
@@ -35,5 +38,9 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-
+  onupload(event) {
+    this.msgs = [];
+    this.msgs.push({severity: 'Success', summary: 'Success:', detail: 'image'});
+    console.log(event.files);
+  }
 }
